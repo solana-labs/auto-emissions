@@ -1,0 +1,32 @@
+[package]
+name = "auto-emissions"
+version = "0.1.0"
+description = "Solana Automatic Token Emissions"
+authors = ["Solana Maintainers <maintainers@solana.foundation>"]
+repository = "https://github.com/solana-labs/auto-emissions"
+categories = ["finance"]
+keywords = ["solana", "token", "emission", "schedule", "autoemissions"]
+license = "Apache-2.0"
+homepage = "https://solana.com/"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "auto_emissions"
+
+[features]
+test = []
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+default = []
+
+[dependencies]
+anchor-lang = "=0.28.0"
+anchor-spl = "=0.28.0"
+solana-program = "=1.14.19"
+spl-token-2022 = "=0.6.1"
+solana-security-txt = "1.1.1"
+num-traits = "0.2.15"
+num = "0.4.0"
