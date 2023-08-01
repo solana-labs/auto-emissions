@@ -20,7 +20,7 @@ solana_security_txt::security_txt! {
     auditors: ""
 }
 
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("5mji6qebN63LgPLLLUt5byc8R2Tq8vr1LakRz9cZmB8y");
 
 #[program]
 pub mod auto_emissions {

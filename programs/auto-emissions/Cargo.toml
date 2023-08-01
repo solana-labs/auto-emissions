@@ -26,7 +26,6 @@ default = []
 anchor-lang = "=0.28.0"
 anchor-spl = "=0.28.0"
 solana-program = "=1.14.19"
-spl-token-2022 = "=0.6.1"
 solana-security-txt = "1.1.1"
 num-traits = "0.2.15"
-num = "0.4.0"
+borsh = "=0.9.3"

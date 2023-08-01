@@ -2,9 +2,9 @@
 seeds = false
 skip-lint = false
 [programs.localnet]
-auto_emissions = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+auto_emissions = "5mji6qebN63LgPLLLUt5byc8R2Tq8vr1LakRz9cZmB8y"
 [programs.devnet]
-auto_emissions = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+auto_emissions = "5mji6qebN63LgPLLLUt5byc8R2Tq8vr1LakRz9cZmB8y"
 
 [registry]
 url = "https://api.apr.dev"

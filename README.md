@@ -91,7 +91,7 @@ For examples on how to create auto emission groups and add participants check in
 To validate added groups and participants, run:
 
 ```
-npx ts-node app/cli.ts -k <ADMIN_WALLET> get-groups <SCHEDULE_NAME>
+npx ts-node app/cli.ts -k <ADMIN_WALLET> get-groups <PROJECT_NAME>
 npx ts-node app/cli.ts -k <ADMIN_WALLET> get-participants <GROUP_NAME>
 ```
 
