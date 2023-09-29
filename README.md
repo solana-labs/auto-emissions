@@ -64,42 +64,7 @@ anchor idl init --provider.cluster devnet --filepath ./target/idl/auto_emissions
 
 ### Initialize
 
-A small CLI Typescript client is included to help you initialize and manage the program. By default script uses devnet cluster. Add `-u https://api.mainnet-beta.solana.com` to all of the commands if you plan to execute them on mainnet.
-
-To initialize deployed program, run the following commands:
-
-```
-npx ts-node app/cli.ts -k <ADMIN_WALLET> init <ADMIN_PUBKEY>
-```
-
-Where `<ADMIN_WALLET>` is the file path to the wallet that was set as the upgrade authority of the program upon deployment. `<ADMIN_PUBKEY>` will be set as protocol admin.
-
-To change protocol admin, run:
-
-```
-npx ts-node app/cli.ts -k <ADMIN_WALLET> set-authority <ADMIN_PUBKEY>
-```
-
-To validate initialized program:
-
-```
-npx ts-node app/cli.ts -k <ADMIN_WALLET> get-protocol
-```
-
-For examples on how to create auto emission groups and add participants check integration tests under `test` directory.
-
-To validate added groups and participants, run:
-
-```
-npx ts-node app/cli.ts -k <ADMIN_WALLET> get-groups <PROJECT_NAME>
-npx ts-node app/cli.ts -k <ADMIN_WALLET> get-participants <GROUP_NAME>
-```
-
-You can list all of the available commands by running the following:
-
-```
-npx ts-node app/cli.ts --help
-```
+Before the first use of the AutoEmissions program it must be initialized with the `init` instruction.
 
 ## Support
 
