@@ -47,7 +47,7 @@ pub struct InitParams {
 }
 
 pub fn init(ctx: Context<Init>, params: &InitParams) -> Result<()> {
-    utils::validate_upgrade_authority(
+    utils::validate_upgrade_authority::<AutoEmissions>(
         ctx.accounts.upgrade_authority.key(),
         &ctx.accounts.autoemissions_program_data.to_account_info(),
         &ctx.accounts.autoemissions_program.to_account_info(),
