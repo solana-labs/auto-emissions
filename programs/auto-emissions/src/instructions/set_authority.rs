@@ -31,7 +31,7 @@ pub fn set_authority(ctx: Context<SetAuthority>, params: &SetAuthorityParams) ->
     // allow to set new authority by protocol authority or program's upgrade authority
     // the latter is needed in case protocol authority was mistakenly set to a wrong address
     if ctx.accounts.authority.key() != protocol.authority {
-        utils::validate_upgrade_authority(
+        utils::validate_upgrade_authority::<AutoEmissions>(
             ctx.accounts.authority.key(),
             &ctx.accounts.autoemissions_program_data.to_account_info(),
             &ctx.accounts.autoemissions_program.to_account_info(),

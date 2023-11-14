@@ -1,40 +1,31 @@
 //! Common utility functions.
 
-#[cfg(not(feature = "test"))]
-use crate::{error::AutoEmissionsError, program::AutoEmissions};
-//
 use {anchor_lang::prelude::*, anchor_spl::token::Transfer};
 
-#[cfg(not(feature = "test"))]
-pub fn validate_upgrade_authority(
-    upgrade_authority: Pubkey,
-    autoemissions_program_data: &AccountInfo,
-    autoemissions_program: &AccountInfo,
+pub fn validate_upgrade_authority<T: anchor_lang::Id>(
+    expected_upgrade_authority: Pubkey,
+    program_data: &AccountInfo,
+    program: &AccountInfo,
 ) -> Result<()> {
-    let program: Program<AutoEmissions> = Program::try_from(autoemissions_program)?;
-    let program_data: Account<ProgramData> = Account::try_from(autoemissions_program_data)?;
+    let program: Program<T> = Program::try_from(program)?;
+    if let Some(programdata_address) = program.programdata_address()? {
+        require_keys_eq!(
+            programdata_address,
+            program_data.key(),
+            ErrorCode::InvalidProgramExecutable
+        );
+        let program_data: Account<ProgramData> = Account::try_from(program_data)?;
+        if let Some(current_upgrade_authority) = program_data.upgrade_authority_address {
+            if current_upgrade_authority != Pubkey::default() {
+                require_keys_eq!(
+                    current_upgrade_authority,
+                    expected_upgrade_authority,
+                    ErrorCode::ConstraintOwner
+                );
+            }
+        }
+    } // otherwise not upgradeable
 
-    // should be also checked in Program::try_from()
-    if autoemissions_program.owner != &crate::ID {
-        return Err(Error::from(ErrorCode::AccountOwnedByWrongProgram)
-            .with_pubkeys((*autoemissions_program.owner, crate::ID)));
-    }
-
-    require!(
-        program.programdata_address()? == Some(program_data.key())
-            && program_data.upgrade_authority_address == Some(upgrade_authority),
-        AutoEmissionsError::InvalidAuthority
-    );
-
-    Ok(())
-}
-
-#[cfg(feature = "test")]
-pub fn validate_upgrade_authority(
-    _authority: Pubkey,
-    _autoemissions_program_data: &AccountInfo,
-    _autoemissions_program: &AccountInfo,
-) -> Result<()> {
     Ok(())
 }
 
